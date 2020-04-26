@@ -32569,7 +32569,12 @@ function Game(_ref) {
     }, card));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "copy"
-  }, "\xA92020 - Aldo Nascimbene @6\xE8me Evans - W.R"));
+  }, "\xA92020 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "svsem",
+    href: "https://svsem.github.io/Memorai/"
+  }, "Svyatoslav Semelov"), " - Aldo Nascimbene @6\xE8me Evans - W.R - ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/landscapersParis"
+  }, "Vaiiho Nascimbene(lpChamps`)")));
 }
 
 /***/ }),
@@ -32670,4 +32675,4 @@ module.exports = exported;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.main.73754374710eea7c5b7e.js.map
+//# sourceMappingURL=bundle.main.67b581362b36704c53e7.js.map

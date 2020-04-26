@@ -127,7 +127,7 @@ export default function Game({ fieldWidth = 6, fieldHeight = 3 }) {
 			</div>
 		</div>
 		<div className="copy">
-			©2020 - Aldo Nascimbene @6ème Evans - W.R
+			©2020 <a className="svsem" href="https://svsem.github.io/Memorai/">Svyatoslav Semelov</a> - Aldo Nascimbene @6ème Evans - W.R - <a href="https://github.com/landscapersParis">Vaiiho Nascimbene(lpChamps`)</a>
 		</div>
 	</div>
 }
