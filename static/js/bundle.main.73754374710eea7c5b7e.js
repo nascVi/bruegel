@@ -32552,7 +32552,9 @@ function Game(_ref) {
     className: "BruegelOriginal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "title"
-  }, "Jouer avec Bruegel - Le Memory"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Jouer avec Bruegel - Le Memory"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Cet ouvrage de l'El\xE8ve aux Ma\xEEtres et l'Artiste, est un h\xF4mage au personnes que nous avons perdu"), "Que Renaisse un jour l'Italie, coeur de l'art, de culture, de spiritualit\xE9, et des jeux de l'enfance, ad vitam aeternum. Amen \u271D")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "game container-md"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "../../../images/jouerAvecBruegel.jpg"
@@ -32668,4 +32670,4 @@ module.exports = exported;
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.main.ebbeac22f0c0d748cf5f.js.map
+//# sourceMappingURL=bundle.main.73754374710eea7c5b7e.js.map

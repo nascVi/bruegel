@@ -32,7 +32,7 @@
 		"build": "webpack --display-error-details --mode=development",
 		"watch": "webpack --display-error-details --watch --mode=development",
 		"build-production": "webpack --display-error-details --mode=production",
-		"dev-server": "live-server --port=5000 --entry-file=index.html"
+		"dev-server": "live-server --port=3000 --entry-file=index.html"
 	},
 	"babel": {
 		"presets": [

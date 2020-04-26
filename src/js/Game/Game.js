@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import uuid from "uuid";
 import cardImages from "../../cards";
 import Card from "../Card/Card";
@@ -21,12 +21,12 @@ function generateCards(count) {
 			isFlipped: false,
 			canFlip: true
 		}))
-		.flatMap(e => [e, {...deepcopy(e), id: uuid.v4()}]);
+		.flatMap(e => [e, { ...deepcopy(e), id: uuid.v4() }]);
 
 	return shuffleArray(cards);
 }
 
-export default function Game({fieldWidth=6, fieldHeight=3}) {
+export default function Game({ fieldWidth = 6, fieldHeight = 3 }) {
 	const totalCards = fieldWidth * fieldHeight;
 
 	const [cards, setCards] = useState(generateCards(totalCards));
@@ -38,14 +38,14 @@ export default function Game({fieldWidth=6, fieldHeight=3}) {
 		setCards(prev => prev.map(c => {
 			if (c.id !== cardID)
 				return c;
-			return {...c, isFlipped};
+			return { ...c, isFlipped };
 		}));
 	}
 	function setCardCanFlip(cardID, canFlip) {
 		setCards(prev => prev.map(c => {
 			if (c.id !== cardID)
 				return c;
-			return {...c, canFlip};
+			return { ...c, canFlip };
 		}));
 	}
 
@@ -109,15 +109,22 @@ export default function Game({fieldWidth=6, fieldHeight=3}) {
 	}
 
 	return <div className="BruegelOriginal">
-			<h1 className="title">
+		<h1 className="title">
 			Jouer avec Bruegel - Le Memory
 			</h1>
+		<br /><br />
+		<h2 className="title">
+			<i>
+				<p>Cet ouvrage de l'Elève aux Maîtres et l'Artiste, est un hômage au personnes que nous avons perdu</p>
+			Que Renaisse un jour l'Italie, coeur de l'art, de culture, de spiritualité, et des jeux de l'enfance, ad vitam aeternum. Amen ✝
+			</i>
+		</h2>
 		<div className="game container-md">
-		
+
 			<img src="../../../images/jouerAvecBruegel.jpg" />
-		<div className="cards-container">
-			{cards.map(card => <Card onClick={() => onCardClick(card)} key={card.id} {...card}/>)}
-		</div>
+			<div className="cards-container">
+				{cards.map(card => <Card onClick={() => onCardClick(card)} key={card.id} {...card} />)}
+			</div>
 		</div>
 		<div className="copy">
 			©2020 - Aldo Nascimbene @6ème Evans - W.R
