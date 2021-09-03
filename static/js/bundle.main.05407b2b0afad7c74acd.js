@@ -221,9 +221,7 @@ function fromByteArray (uint8) {
 
   // go through the array every three bytes, we'll deal with trailing stuff later
   for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
-    parts.push(encodeChunk(
-      uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)
-    ))
+    parts.push(encodeChunk(uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)))
   }
 
   // pad the end with zeros, but make sure to not forget the extra bytes
@@ -2195,9 +2193,9 @@ function toComment(sourceMap) {
 (function (global, factory) {
 	 true ? module.exports = factory() :
 	undefined;
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
-	var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 	function createCommonjsModule(fn, module) {
 		return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -2205,7 +2203,7 @@ function toComment(sourceMap) {
 
 	var typeDetect = createCommonjsModule(function (module, exports) {
 	(function (global, factory) {
-		module.exports = factory();
+		 module.exports = factory() ;
 	}(commonjsGlobal, (function () {
 	/* !
 	 * type-detect
@@ -2698,7 +2696,6 @@ function toComment(sourceMap) {
 	      // NOTE: Set.prototype.keys is alias of Set.prototype.values
 	      // it means key is equals value
 	      return key;
-	    default:
 	  }
 	}
 
@@ -2735,7 +2732,6 @@ function toComment(sourceMap) {
 	    case 'Set':
 	      collection.add(value);
 	      break;
-	    default:
 	  }
 
 	  return collection;
@@ -2830,7 +2826,7 @@ function toComment(sourceMap) {
 	 * @return {RegExp}
 	 */
 	function copyRegExp(value) {
-	  return new RegExp(value.source || '(?:)', value.flags);
+	  return new RegExp(value.source, value.flags);
 	}
 
 	/**
@@ -2850,7 +2846,13 @@ function toComment(sourceMap) {
 	 * @return {*}
 	 */
 	function copyTypedArray(value, type) {
-	  return globalObject[type].from(value);
+	  const typedArray = globalObject[type];
+
+	  if (typedArray.from) {
+	    return globalObject[type].from(value);
+	  }
+
+	  return new globalObject[type](value);
 	}
 
 	/**
@@ -3021,7 +3023,7 @@ function toComment(sourceMap) {
 	  const valueType = detectType(value);
 
 	  if (!isCollection(valueType)) {
-	    return recursiveCopy(value, null, null, null, customizer);
+	    return recursiveCopy(value, null, null, null);
 	  }
 
 	  const copiedValue = copy$1(value, valueType, customizer);
@@ -3029,7 +3031,7 @@ function toComment(sourceMap) {
 	  const references = new WeakMap([[value, copiedValue]]);
 	  const visited = new WeakSet([value]);
 
-	  return recursiveCopy(value, copiedValue, references, visited, customizer);
+	  return recursiveCopy(value, copiedValue, references, visited);
 	}
 
 	/**
@@ -3066,7 +3068,6 @@ function toComment(sourceMap) {
 	    case 'Set':
 	      keys = value.keys();
 	      break;
-	    default:
 	  }
 
 	  // walk within collection with iterator
@@ -3093,9 +3094,7 @@ function toComment(sourceMap) {
 	          collectionValue,
 	          copiedCollectionValue,
 	          references,
-	          visited,
-	          customizer
-	        ),
+	          visited),
 	        type
 	      );
 	    }
@@ -3108,7 +3107,7 @@ function toComment(sourceMap) {
 
 	return deepcopy;
 
-}));
+})));
 //# sourceMappingURL=deepcopy.js.map
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../buffer/index.js */ "./node_modules/buffer/index.js").Buffer))
@@ -3122,6 +3121,7 @@ function toComment(sourceMap) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -3474,7 +3474,7 @@ module.exports = ReactPropTypesSecret;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.13.1
+/** @license React v16.14.0
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -28044,7 +28044,7 @@ function injectIntoDevTools(devToolsConfig) {
     // Enables DevTools to append owner stacks to error messages in DEV mode.
     getCurrentFiber:  function () {
       return current;
-    } 
+    }
   }));
 }
 var IsSomeRendererActing$1 = ReactSharedInternals.IsSomeRendererActing;
@@ -28396,7 +28396,7 @@ implementation) {
   };
 }
 
-var ReactVersion = '16.13.1';
+var ReactVersion = '16.14.0';
 
 setAttemptUserBlockingHydration(attemptUserBlockingHydration$1);
 setAttemptContinuousHydration(attemptContinuousHydration$1);
@@ -28543,7 +28543,7 @@ if (false) {} else {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/** @license React v16.13.1
+/** @license React v16.14.0
  * react.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -28563,7 +28563,7 @@ if (true) {
 var _assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
 
-var ReactVersion = '16.13.1';
+var ReactVersion = '16.14.0';
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -31924,7 +31924,7 @@ function applyToTag(style, options, obj) {
     style.removeAttribute('media');
   }
 
-  if (sourceMap && btoa) {
+  if (sourceMap && typeof btoa !== 'undefined') {
     css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
   } // For old IE
 
@@ -32381,21 +32381,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var deepcopy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(deepcopy__WEBPACK_IMPORTED_MODULE_4__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -32423,7 +32423,7 @@ function generateCards(count) {
       canFlip: true
     };
   }).flatMap(function (e) {
-    return [e, _objectSpread({}, deepcopy__WEBPACK_IMPORTED_MODULE_4___default()(e), {
+    return [e, _objectSpread(_objectSpread({}, deepcopy__WEBPACK_IMPORTED_MODULE_4___default()(e)), {}, {
       id: uuid__WEBPACK_IMPORTED_MODULE_1___default.a.v4()
     })];
   });
@@ -32461,7 +32461,7 @@ function Game(_ref) {
     setCards(function (prev) {
       return prev.map(function (c) {
         if (c.id !== cardID) return c;
-        return _objectSpread({}, c, {
+        return _objectSpread(_objectSpread({}, c), {}, {
           isFlipped: isFlipped
         });
       });
@@ -32472,7 +32472,7 @@ function Game(_ref) {
     setCards(function (prev) {
       return prev.map(function (c) {
         if (c.id !== cardID) return c;
-        return _objectSpread({}, c, {
+        return _objectSpread(_objectSpread({}, c), {}, {
           canFlip: canFlip
         });
       });
@@ -32591,6 +32591,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Image; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _excluded = ["src", "alt", "style", "className"];
+
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -32606,7 +32608,7 @@ function Image(_ref) {
       style = _ref$style === void 0 ? {} : _ref$style,
       _ref$className = _ref.className,
       className = _ref$className === void 0 ? "" : _ref$className,
-      props = _objectWithoutProperties(_ref, ["src", "alt", "style", "className"]);
+      props = _objectWithoutProperties(_ref, _excluded);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", _extends({
     src: src,
@@ -32666,13 +32668,11 @@ options.singleton = false;
 
 var update = api(content, options);
 
-var exported = content.locals ? content.locals : {};
 
 
-
-module.exports = exported;
+module.exports = content.locals || {};
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.main.67b581362b36704c53e7.js.map
+//# sourceMappingURL=bundle.main.05407b2b0afad7c74acd.js.map
